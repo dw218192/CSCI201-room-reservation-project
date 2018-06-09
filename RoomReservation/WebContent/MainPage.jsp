@@ -7,7 +7,7 @@
 		<title>Insert title here</title>
 	</head>
 	<body>
-		Welcome to Library Search
+		Welcome to Roome Reservation
 		<form name = "login" action = "LogIn.jsp"><input type = "submit" name = "login_button" value = "LOGIN"></form>
 		<form name ="login" action = "SignUp.jsp"><input type ="submit"name = "signup" value = "SIGNUP"></form>
 	
