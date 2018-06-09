@@ -1,5 +1,17 @@
 package webDataClasses;
 
-public class RoomList {
+import java.util.ArrayList;
 
+public class RoomList {
+	private ArrayList<Room> rooms;
+	
+	public RoomList() {
+		rooms = new ArrayList<Room>();
+	}
+	public void addRoom(Room newRoom) {
+		rooms.add(newRoom);
+	}
+	public int size() {
+		return rooms.size();
+	}
 }
