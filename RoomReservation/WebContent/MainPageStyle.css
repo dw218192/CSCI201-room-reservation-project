@@ -1,0 +1,172 @@
+@CHARSET "ISO-8859-1";
+
+@font-face { 
+	font-family: 'National'; 
+	src: url('https://www.usc.edu/assets/fonts/NationalWeb-Regular.eot'); 
+	src: local(':)'), 
+	url('https://www.usc.edu/assets/fonts/NationalWeb-Regular.woff') format('woff'), 
+	url('https://www.usc.edu/assets/fonts/NationalWeb-Regular.ttf') format('truetype'), 
+	url('https://www.usc.edu/assets/fonts/NationalWeb-Regular.svg') format('svg'); 
+	font-weight: 500; 
+	font-style: normal; 
+}
+
+@font-face { 
+	font-family: 'National'; 
+	src: url('https://www.usc.edu/assets/fonts/NationalWeb-Bold.eot'); 
+	src: local(':)'), 
+	url('https://www.usc.edu/assets/fonts/NationalWeb-Bold.woff') format('woff'), 
+	url('https://www.usc.edu/assets/fonts/NationalWeb-Bold.ttf') format('truetype'), 
+	url('https://www.usc.edu/assets/fonts/NationalWeb-Bold.svg') format('svg'); 
+	font-weight: 800; 
+	font-style: normal; 
+}
+
+@font-face { 
+	font-family: 'National'; 
+	src: url('https://www.usc.edu/assets/fonts/NationalWeb-Extrabold-Italic.eot'); 
+	src: local(':)'), 
+	url('https://www.usc.edu/assets/fonts/NationalWeb-ExtraBold-Italic.woff') format('woff'), 
+	url('https://www.usc.edu/assets/fonts/NationalWeb-Extrabold-Italic.ttf') format('truetype'), 
+	url('https://www.usc.edu/assets/fonts/NationalWeb-Extrabold-Italic.svg') format('svg'); 
+	font-weight: 900; 
+	font-style: italic; 
+}
+
+#topOfPage {
+	border-top:1px solid #b43133;
+	margin: 0px;
+	padding: 0 0 0 0;
+	height: 105px;
+	background: #900;
+	background-image: -webkit-gradient(linear,left top,left bottom,color-stop(0, #990000),color-stop(1, #611306));
+	background-image: -moz-linear-gradient(center top,#990000 0%,#611306 100%);
+	background-image: -o-linear-gradient(top,#990000,#611306);
+	display: block;
+	position: relative;
+}
+
+#topOfPage img {
+	position: relative;
+	left: 10px;
+	width: 400px;
+	height: 90px;
+}
+
+h1 {
+	font-family: 'Book Antiqua';
+	text-align: center;
+	font-size:110px;
+}
+
+#SignUpButton{
+	position: fixed;
+	left: 400px;
+	font-size: 30px;
+	border-radius:12px;
+	width: 200px;
+	height: 80px;
+	border: 2px solid black;
+	transition: all 0.5s;
+  	cursor: pointer;
+  	margin: 5px;
+	
+}
+
+#SignUpButton span {
+	cursor: pointer;
+  	display: inline-block;
+  	position: relative;
+  	transition: 0.5s;
+}
+
+#SignUpButton span:after {
+	content: '\00bb';
+  	position: absolute;
+  	opacity: 0;
+  	top: 0;
+  	right: -20px;
+  	transition: 0.5s;
+}
+
+#SignUpButton:hover {
+	box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+}
+
+#SignUpButton:hover span {
+	padding-right: 25px;
+}
+
+#SignUpButton:hover span:after {
+	opacity: 1;
+  	right: 0;
+}
+
+#LoginButton {
+	position: fixed;
+	left: 900px;
+	top: 515px;
+	font-size: 30px;
+	border-radius:12px;
+	width: 200px;
+	height: 80px;
+	border: 2px solid black;
+	
+}
+
+#LoginButton span {
+	cursor: pointer;
+  	display: inline-block;
+  	position: relative;
+  	transition: 0.5s;
+}
+
+#LoginButton span:after {
+	content: '\00bb';
+  	position: absolute;
+  	opacity: 0;
+  	top: 0;
+  	right: -20px;
+  	transition: 0.5s;
+}
+
+
+#LoginButton:hover {
+	box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+}
+
+#LoginButton:hover span {
+	padding-right: 25px;
+}
+
+#LoginButton:hover span:after {
+	opacity: 1;
+  	right: 0;
+}
+
+#centerOfPage {
+	
+	margin: 0px;
+	height: 100%;
+}
+
+#bottomOfPage {
+	border-top:1px solid #b43133;
+	margin: 0px;
+	padding: 0 0 0 0;
+	background: #900;
+	background-image: -webkit-gradient(linear,left top,left bottom,color-stop(0, #990000),color-stop(1, #611306));
+	background-image: -moz-linear-gradient(center top,#990000 0%,#611306 100%);
+	background-image: -o-linear-gradient(top,#990000,#611306);
+	display: inline-block;
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+	height: 100px;
+}
+
+body {
+	background: linear-gradient(to right, #F0FFFF, #F5F5DC);
+	margin: 0px;
+}
