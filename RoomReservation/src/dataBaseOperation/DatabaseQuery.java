@@ -54,6 +54,4 @@ public class DatabaseQuery extends HttpServlet {
 			System.out.println("cnfe exception:" + cnfe.getMessage());
 		}
 	}
-
-
 }
