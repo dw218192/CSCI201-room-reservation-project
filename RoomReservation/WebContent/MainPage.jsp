@@ -16,15 +16,17 @@
 	</head>
 	<body>
 		<div id="topOfPage" name="topOfPage">
-			<img src="http://scf.usc.edu/~zhuoweiz/itp104/img/usc-logo.png"/>
+			<a href="https://www.usc.edu/">
+				<img src="http://scf.usc.edu/~zhuoweiz/itp104/img/usc-logo.png"/>
+			</a>
 		</div>
 		<div id="centerOfPage" name="centerOfPage">
 			<h1 id="Title"><span style="color: #900">USC</span> Study Room Reservation</h1>
 			<form name="SignUpForm" method="POST" action= "SignUp.jsp">
-				<button type="submit" id= "SignUpButton" name = "SignUpButton">Sign Up</button> <br /><br />
+				<button type="submit" id= "SignUpButton" name = "SignUpButton"><span>Sign Up</span></button> <br /><br />
 			</form>
 			<form name="LoginForm" method="POST" action="Login.jsp">
-				<button type = "submit" id="LoginButton" name="LoginButton">Login</button>
+				<button type = "submit" id="LoginButton" name="LoginButton"><span>Login</span></button>
 			</form>
 		</div>
 		<div id="bottomOfPage" name="bottomOfPage"></div>
