@@ -1,21 +1,13 @@
 package webDataClasses;
 
+import java.util.ArrayList;
+
 public class Room {
-	private boolean isAvailable;
+	//private boolean isAvailable;
 	private String name;
-	private String location;
-	
-	public Room(boolean isAvailable, String name, String location) {
-		super();
-		this.isAvailable = isAvailable;
-		this.name = name;
-		this.location = location;
-	}
-	public boolean isAvailable() {
-		return isAvailable;
-	}
-	public void setAvailable(boolean isAvailable) {
-		this.isAvailable = isAvailable;
+	private ArrayList<String> date;
+	public void setDate(ArrayList<String> date) {
+		this.date = date;
 	}
 	public String getName() {
 		return name;
@@ -23,11 +15,13 @@ public class Room {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public String getLocation() {
-		return location;
+	public ArrayList<String> getDate() {
+		return date;
 	}
-	public void setLocation(String location) {
-		this.location = location;
+	public void addDate(String date) {
+		this.date.add(date);
 	}
+	
+
 	
 }
