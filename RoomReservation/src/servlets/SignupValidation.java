@@ -44,10 +44,8 @@ public class SignupValidation extends HttpServlet {
 	        	//int studentID = rs.getInt("studentID");
 	        	if(username.equals(userInputName))
 	        	{
-	        		if(password.equals(userInputPw))
-	        		{
-	        			isSignedUp = true;
-	        		}
+	        		request.setAttribute("usernameTaken", "Username has already been taken");
+	        		isSignedUp = true;
 	        	}
 	        	System.out.println ("username = " + username);
 	        	System.out.println ("password = " + password);
@@ -85,15 +83,17 @@ public class SignupValidation extends HttpServlet {
 	    	}
 	    }  
 	    
-	   
+	    
 	    if(isSignedUp == false)
-	    {	    	 
+	    {	
+	    	String next = "SuccessPage.jsp";
 	    }
 	    else {
-	    	 String nextJSP = "SignUp.jsp";
-	    	 RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(nextJSP);
-	 		 dispatcher.forward(request,response);
+	    	String nextJSP = "SignUp.jsp";	
+	    	 
 	    }
+	    RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(nextJSP);
+		dispatcher.forward(request,response);
 	 
 	    
 	    

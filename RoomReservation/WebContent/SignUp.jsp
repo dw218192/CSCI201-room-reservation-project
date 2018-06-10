@@ -12,10 +12,16 @@
 </head>
 <body>
 	<form name = "signupInfo" method = "GET" action ="SignupValidation">
-		Name:<input type = "text" name = "username" value = "" ></br>
+		Name:<input type = "text" name = "username" value = "" > <label id="usernameError" name="usernameError"></label></br>
 		Password:<input type = "text" name = "password"value = ""></br>
 		<input type = "submit" name = "submit" value = "submit" onsubmit = "ValidFields()">
 	</form>
 
 </body>
+	<script>
+		document.getElementById("usernameError").innerHTML = "${requestScope.usernameTaken}";
+		
+	
+	</script>
+
 </html>
