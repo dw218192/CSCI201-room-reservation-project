@@ -56,6 +56,37 @@
 h1 {
 	font-family: 'Book Antiqua';
 	text-align: center;
+	font-size:110px;
+}
+
+#SignUpButton{
+	position: fixed;
+	left: 400px;
+	font-size: 30px;
+	border-radius:12px;
+	width: 200px;
+	height: 80px;
+	border: 2px solid black;
+}
+
+#SignUpButton:hover {
+	box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+}
+
+#LoginButton {
+	position: fixed;
+	left: 900px;
+	top: 515px;
+	font-size: 30px;
+	border-radius:12px;
+	width: 200px;
+	height: 80px;
+	border: 2px solid black;
+	
+}
+
+#LoginButton:hover {
+	box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
 }
 
 #centerOfPage {

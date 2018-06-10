@@ -19,7 +19,7 @@
 			<img src="http://scf.usc.edu/~zhuoweiz/itp104/img/usc-logo.png"/>
 		</div>
 		<div id="centerOfPage" name="centerOfPage">
-			<h1 id="Title"><span style="color: red">USC</span> Room Reservation</h1>
+			<h1 id="Title"><span style="color: #900">USC</span> Study Room Reservation</h1>
 			<form name="SignUpForm" method="POST" action= "SignUp.jsp">
 				<button type="submit" id= "SignUpButton" name = "SignUpButton">Sign Up</button> <br /><br />
 			</form>
