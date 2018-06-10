@@ -5,22 +5,17 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Properties;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 import javax.mail.Authenticator;
-import javax.mail.BodyPart;
 import javax.mail.Message;
-import javax.mail.Multipart;
 import javax.mail.PasswordAuthentication;
 import javax.mail.Session;
 import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
-import javax.mail.internet.MimeBodyPart;
 import javax.mail.internet.MimeMessage;
-import javax.mail.internet.MimeMultipart;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -29,9 +24,11 @@ import javax.servlet.http.HttpServletResponse;
 
 /*
  * This servlet takes care of all the email sending in this web application
- * it takes the following parameters: 
+ * 
+ * it must take the following parameters submitted from a page: 
  * String EmailType
- * List<String> Recipients
+ * int capacity
+ * String Recipients1, Recipients2, ... (num of recipients = capacity)
  * 
  * EmailType = "verification" Send the verification Email
  * EmailType = "notification" Send the invitation Email
@@ -59,14 +56,13 @@ class EmailSender extends Thread{
     private Properties properties;
 
     private MimeMessage message;
-    private BodyPart messageBodyPart;
-    private Multipart multipart;
 
     private Authenticator authenticator;
 
-    public EmailSender (String from, String to, String emailType) throws FileNotFoundException {
+    public EmailSender (String from, String to, String emailType, HttpServletRequest request) throws FileNotFoundException {
         this.from = from;
         this.to = to;
+        messageBody = "";
         
         /*this part reads the html file that will be the email content*/
         FileReader fr = null;
@@ -74,10 +70,10 @@ class EmailSender extends Thread{
         
         if(emailType.equals("verification")) {
         	subject = "Room Reservation Verification";
-        	fr = new FileReader("verificationEmailContent.html");
+        	fr = new FileReader(request.getServletContext().getRealPath("verificationEmailContent.txt"));
         }else if(emailType.equals("notification")) {
         	subject = "Your friend has just reserved a room!";
-        	fr = new FileReader("notificationEmailContent.html");
+        	fr = new FileReader(request.getServletContext().getRealPath("notificationEmailContent.txt"));
         }
         
         if(fr != null) {
@@ -87,10 +83,12 @@ class EmailSender extends Thread{
         }
         
         try {
-        	String line;
+        	String line = null;
         	do {
         		line = br.readLine();
-        		messageBody += line;
+        		if(line != null) {
+        			messageBody += line;
+        		}
         	}while(br.readLine() != null);
         }catch(IOException e) {
         	System.out.println("Error in reading the file in emailsender.emailsender() " + e.getMessage());
@@ -114,15 +112,11 @@ class EmailSender extends Thread{
             message.addRecipient ( Message.RecipientType.TO,
                                 new InternetAddress ( to ) );
             message.setSubject ( subject );
-
-            multipart = new MimeMultipart();
-            messageBodyPart = new MimeBodyPart();
-            messageBodyPart.setContent ( messageBody, "text/html" );
-            multipart.addBodyPart ( messageBodyPart );
-            message.setContent ( multipart );
+            System.out.println(messageBody);
+            message.setContent ( messageBody, "text/html" );
 
             Transport.send ( message );
-            System.out.println("Message send successfully....");
+            System.out.println("Message sent successfully....");
         } catch ( Exception e ) {
         	System.out.println("Message sending failed! in EmailSender.send()");
             e.printStackTrace ();
@@ -140,28 +134,31 @@ public class EmailSenderProcessor extends HttpServlet {
 	private ArrayList<String> recipients = new ArrayList<String> ();
 	private ExecutorService executor = Executors.newCachedThreadPool();
 	
-	private void SendToAllRecipients(String EmailType) throws FileNotFoundException {
+	private void SendToAllRecipients(String EmailType, HttpServletRequest request) throws FileNotFoundException {
 		for(String st : recipients) {
-			EmailSender emailSender = new EmailSender("democsci201@gmail.com", st, EmailType);
+			EmailSender emailSender = new EmailSender("democsci201@gmail.com", st, EmailType, request);
 			executor.execute(emailSender);
 		}
 	}
 
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException {		
 		try {
-			String capacity_string = request.getParameter("Room Capacity");
+			String capacity_string = request.getParameter("capacity");
 			int capacity = Integer.parseInt(capacity_string);
 			
 			for(int i=0; i<capacity; i++) {
 				String recipient = request.getParameter("recipient"+i);
-				recipients.add(recipient);
+				
+				if(recipient != null && !recipient.equals("null") && recipient.length() > 1) {
+					recipients.add(recipient);
+				}
 			}
 			
 			String EmailType = request.getParameter("EmailType");
 			if(EmailType.equals("verification")) {
-				SendToAllRecipients("verification");
+				SendToAllRecipients("verification", request);
 			}else if(EmailType.equals("notification")) {
-				SendToAllRecipients("notification");
+				SendToAllRecipients("notification", request);
 			}else {
 	        	System.out.println("unknown email type in emailsender.emailsender()");
 	        	return;
