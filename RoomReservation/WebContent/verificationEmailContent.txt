@@ -1,0 +1,1 @@
+<body><h2> Welcome to Room Reservation</h2><p> you have successfully reserved a room! </p></body>
